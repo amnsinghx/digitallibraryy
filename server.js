@@ -10,7 +10,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Frontend serve
+// ===============================
+// FRONTEND STATIC FILES
+// ===============================
 app.use(express.static(path.join(__dirname, "frontend")));
 
 // ===============================
@@ -165,13 +167,15 @@ app.post("/api/auth/forgot-password", async (req, res) => {
 });
 
 // ===============================
-// FRONTEND
+// FRONTEND HOME PAGE
 // ===============================
-app.get("*", (req, res) => {
+app.get("/", (req, res) => {
   res.sendFile(
     path.join(__dirname, "frontend", "index.html")
   );
 });
 
+// ===============================
 // VERCEL
+// ===============================
 module.exports = app;
