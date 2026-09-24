@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bheem Siksha | Digital Library</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- ================= AUTH PAGE ================= -->
+  <main id="authPage" class="container">
+
+    <section class="left-side">
+      <p class="small-title">DIGITAL LIBRARY</p>
+      <h1>Bheem<br><span>Siksha</span></h1>
+      <p class="tagline">
+        Read stories, learn something new, and explore your favourite books.
+      </p>
+      <p class="icons">📚 ✦ 📖 ✦</p>
+    </section>
+
+    <section class="right-side">
+
+      <div id="loginView" class="login-box">
+        <h2 id="loginTitle">Welcome back</h2>
+        <p class="subtitle">Login to enter your library.</p>
+
+        <div class="role-buttons">
+          <button class="role active" data-role="member" type="button">
+            Member Login
+          </button>
+          <button class="role" data-role="admin" type="button">
+            Admin Login
+          </button>
+        </div>
+
+        <form id="loginForm">
+          <label>Email</label>
+          <input type="email" id="loginEmail" placeholder="Enter your email" required>
+
+          <label>Password</label>
+          <div class="password-wrapper">
+            <input type="password" id="loginPassword" placeholder="Enter your password" required>
+            <button type="button" class="toggle-password" data-target="loginPassword">👁️</button>
+          </div>
+
+          <button type="submit" class="login-button">Login →</button>
+        </form>
+
+        <button id="showForgot" class="text-button" type="button">
+          Forgot password?
+        </button>
+
+        <p class="new-user">
+          New to Bheem Siksha?
+          <button id="showRegister" class="text-button" type="button">
+            Create account
+          </button>
+        </p>
+
+        <p id="loginMessage" class="message"></p>
+      </div>
+
+      <div id="registerView" class="login-box hidden">
+        <button class="back-button" data-back="login" type="button">← Back</button>
+        <h2>Create account</h2>
+        <p class="subtitle">Create your member account.</p>
+
+        <form id="registerForm">
+          <label>Full name</label>
+          <input type="text" id="registerName" placeholder="Enter your name" required>
+
+          <label>Email</label>
+          <input type="email" id="registerEmail" placeholder="Enter your email" required>
+
+          <label>Password</label>
+          <div class="password-wrapper">
+            <input type="password" id="registerPassword"
+              placeholder="Minimum 6 characters" minlength="6" required>
+            <button type="button" class="toggle-password" data-target="registerPassword">👁️</button>
+          </div>
+
+          <button type="submit" class="login-button">
+            Create account →
+          </button>
+        </form>
+
+        <p id="registerMessage" class="message"></p>
+      </div>
+
+      <div id="forgotView" class="login-box hidden">
+        <button class="back-button" data-back="login" type="button">← Back</button>
+        <h2>Reset password</h2>
+        <p class="subtitle">We will send a reset link to your email.</p>
+
+        <form id="forgotForm">
+          <label>Email</label>
+          <input type="email" id="forgotEmail" placeholder="Enter your email" required>
+
+          <button type="submit" class="login-button">
+            Send reset link →
+          </button>
+        </form>
+
+        <p id="forgotMessage" class="message"></p>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- ================= LIBRARY DASHBOARD ================= -->
+  <main id="libraryPage" class="app-shell hidden">
+
+    <aside class="sidebar">
+      <div class="brand">📚 Bheem Siksha Kendra</div>
+      <nav class="nav">
+        <button class="nav-link active" data-view="dashboardView" type="button">🏠 Dashboard</button>
+        <button class="nav-link" data-view="booksView" type="button">📖 Books</button>
+        <button class="nav-link" data-view="issueView" type="button">🗓️ Issue Records</button>
+      </nav>
+    </aside>
+
+    <div class="main-area">
+      <header class="topbar">
+        <button id="sidebarToggle" class="icon-button mobile-only" type="button">☰</button>
+        <div class="topbar-right">
+          <button id="themeToggle" class="icon-button" type="button" title="Toggle theme">🌙</button>
+          <span class="user-chip"><span id="userName"></span> · <span id="userRole"></span></span>
+          <button id="logoutButton" class="logout-button" type="button">Logout</button>
+        </div>
+      </header>
+
+      <!-- DASHBOARD VIEW -->
+      <section id="dashboardView" class="view">
+        <div class="hero">
+          <p class="hero-tag">WELCOME TO YOUR LIBRARY</p>
+          <h1>Read. Learn. Grow.</h1>
+          <p class="hero-text">Apni digital library mein books padhiye aur issue records manage kijiye.</p>
+          <button class="hero-button" data-goto="booksView" type="button">Explore Books →</button>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <p class="stat-icon">📚</p>
+            <h2 id="statTotalBooks">0</h2>
+            <p class="stat-label">Total Books</p>
+          </div>
+          <div class="stat-card">
+            <p class="stat-icon">👥</p>
+            <h2 id="statMembers">1</h2>
+            <p class="stat-label">Members</p>
+          </div>
+          <div class="stat-card">
+            <p class="stat-icon">🗓️</p>
+            <h2 id="statIssued">0</h2>
+            <p class="stat-label">Issued Books</p>
+          </div>
+          <div class="stat-card">
+            <p class="stat-icon">🌙</p>
+            <h2>24/7</h2>
+            <p class="stat-label">Reading Access</p>
+          </div>
+        </div>
+
+        <h2 class="section-title">Featured Books</h2>
+        <div id="featuredBookList" class="book-list"></div>
+      </section>
+
+      <!-- BOOKS VIEW -->
+      <section id="booksView" class="view hidden">
+        <h2 class="section-title">All Books</h2>
+        <div id="bookList" class="book-list"></div>
+      </section>
+
+      <!-- ISSUE RECORDS VIEW -->
+      <section id="issueView" class="view hidden">
+        <h2 class="section-title">Issue Records</h2>
+        <div class="empty-state">
+          <p class="empty-icon">🗓️</p>
+          <p>Issue / Return tracking coming soon.</p>
+          <p class="muted">Isko enable karne ke liye backend mein ek naya table aur API chahiye hoga.</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
